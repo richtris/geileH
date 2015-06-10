@@ -7,13 +7,24 @@ using System.Threading.Tasks;
 namespace Patterns
 {
     class Buchverwaltung : IProductAdmin,IProductModule 
+    
     {
-     public   void BuchEingabe(Book buch) { }
-     public   IList<Book> BuecherAnzeigen() { return new List<Book>(); }
-       public void BuecherLoeschen() { }
+        private List<Book>Bücherliste{get; set;}
+
+        public void BuchEingabe(Book buch) { Bücherliste.Add(buch); }
+     public   IList<Book> BuecherAnzeigen() { return Bücherliste; }
+     public void BuecherLoeschen() { Bücherliste.Clear(); }
 
      public   IDictionary<Book, int>
-           Search(string searchTerm) { return new Dictionary <Book, int>(); }
+           Search(string searchTerm) {
+         
+         var Durchsucher = new Dictionary<Book,int>();
+         
+         foreach(Book buch in Bücherliste){
+
+           if(buch.Title.Contains(searchTerm) ){Durchsucher.Add(buch,1);}
+             
+             
 
       public  int GetQuantity(string isbn) { return 0; }
         
