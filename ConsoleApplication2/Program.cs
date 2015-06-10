@@ -10,7 +10,8 @@ namespace Patterns
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine("Läuft ....");
+            Console.ReadKey();
 
         }
     }
