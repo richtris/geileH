@@ -39,4 +39,6 @@ rechne
 gib aus
 mach irgendwas
 du hure
+ 
+ ln a * (e^i*pi)= -1  x
 */
