@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeileHexe", "GeileHexe\GeileHexe.csproj", "{65E5198A-A0D0-4A7F-8CD4-B3E055F52543}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{65E5198A-A0D0-4A7F-8CD4-B3E055F52543}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65E5198A-A0D0-4A7F-8CD4-B3E055F52543}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65E5198A-A0D0-4A7F-8CD4-B3E055F52543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
