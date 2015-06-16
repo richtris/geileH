@@ -17,5 +17,5 @@ namespace Patterns
 
                 public int CompareTo(object o) { return 1; }
     }
-    Der Rätsch is schon ne coole Socke
+   /* Der Rätsch is schon ne coole Socke */
 }
