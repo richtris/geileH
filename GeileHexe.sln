@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeileHexe", "GeileHexe\GeileHexe.csproj", "{65E5198A-A0D0-4A7F-8CD4-B3E055F52543}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichtrisGUI", "RichtrisGUI\RichtrisGUI.csproj", "{DD0CE1A6-4868-4E4E-9544-92756644A882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichtrisObjects", "RichtrisObjects\RichtrisObjects.csproj", "{9463D49C-7A10-402E-87E4-25E06C837ED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9CF5E5E-37F4-4C89-8718-ECCB76FCB845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0CE1A6-4868-4E4E-9544-92756644A882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0CE1A6-4868-4E4E-9544-92756644A882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0CE1A6-4868-4E4E-9544-92756644A882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0CE1A6-4868-4E4E-9544-92756644A882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9463D49C-7A10-402E-87E4-25E06C837ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9463D49C-7A10-402E-87E4-25E06C837ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9463D49C-7A10-402E-87E4-25E06C837ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9463D49C-7A10-402E-87E4-25E06C837ED3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
