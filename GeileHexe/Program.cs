@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeileH;
+using RichtrisObjects;
 
 namespace GeileHexe
 {
@@ -11,8 +12,19 @@ namespace GeileHexe
     {
         static void Main(string[] args)
         {
+            Highscore highscore = Highscore.Instance;
 
- 
+            highscore.Add("Ich", 2147438648);
+            highscore.Add("Du", -2147438648);
+
+            highscore.PrintHighscore();
+
+
+            Highscore highscore2 = Highscore.Instance;
+
+            highscore2.Add("Richi", 2147483647);
+            highscore2.PrintHighscore();
+
             Hexe hexe = new Hexe();
             
             hexe.Zaubere(new WasserZauber());
