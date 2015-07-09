@@ -39,7 +39,7 @@ namespace GeileH
         }
         public override string Zaubern()
         {
-            return "Zaubere Luft...";
+            return "Zaubere Luft..."; 
         }
     }
 

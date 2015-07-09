@@ -14,7 +14,7 @@ namespace Patterns
 
         private List<IObserver<Preisliste>> observers;
  
-   
+     public Dictionary<string, decimal>getPreisliste() {return preisliste;}
         public void setPreis(String name, decimal preis) { 
             
             if (preis <= 0) throw new  IndexOutOfRangeException("Preis muss positiv sein!");
@@ -23,7 +23,10 @@ namespace Patterns
 
             preisliste.Add(name,preis);
 
-            foreach (var observer in observers) { observer.OnNext(this); }
+            foreach (var observer in observers)
+            { 
+                observer.OnNext(this);
+            }
         
         }
 
@@ -44,6 +47,22 @@ namespace Patterns
            else throw new IndexOutOfRangeException();
 
 
+        }
+
+        class Unsubscriber : IDisposable
+        {
+            private List<IObserver<Preisliste>> _observers;
+            private IObserver<Preisliste> _observer;
+            public Unsubscriber(List<IObserver<Preisliste>> observers, IObserver<Preisliste> observer)
+            {
+                this._observers = observers;
+                this._observer = observer;
+            }
+            public void Dispose()
+            {
+                if (_observer != null && _observers.Contains(_observer))
+                    _observers.Remove(_observer);
+            }
         }
     }
 }
