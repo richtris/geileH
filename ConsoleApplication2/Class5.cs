@@ -15,7 +15,7 @@ namespace Patterns
         private List<IObserver<Preisliste>> observers;
  
      public Dictionary<string, decimal>getPreisliste() {return preisliste;}
-        public void setPreis(String name, decimal preis) { 
+        public void SetPreis(String name, decimal preis) { 
             
             if (preis <= 0) throw new  IndexOutOfRangeException("Preis muss positiv sein!");
         
@@ -63,6 +63,11 @@ namespace Patterns
                 if (_observer != null && _observers.Contains(_observer))
                     _observers.Remove(_observer);
             }
+        }
+
+        internal void SetPreis(string p1, double p2)
+        {
+            throw new NotImplementedException();
         }
     }
 }
