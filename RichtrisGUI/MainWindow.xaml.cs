@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RichtrisObjects;
 
 namespace RichtrisGUI
 {
@@ -33,7 +34,8 @@ namespace RichtrisGUI
             Line.HorizontalAlignment = HorizontalAlignment.Left;
             Line.VerticalAlignment = VerticalAlignment.Center;
             Line.StrokeThickness = 2;
-            MyGrid.Children.Add(Line);
+            GameGrid = MyGrid;
+            GameGrid.Children.Add(Line);
 
         }
 
@@ -44,26 +46,26 @@ namespace RichtrisGUI
             //FrameworkElement fe = sender as FrameworkElement;
             //((YourClass)fe.DataContext).DoYourCommand();
             Line.X2 += 5;
-        } 
-
+        }
+        private Grid GameGrid;
            private int kbreite = 15;
-    private Spielfeld dasSpielfeld;
+    private Spielfeld dasSpielfeld = new Spielfeld();
 	
-    public SpielfeldCanvas(){}
+   // public SpielfeldCanvas(){}
     private void CodeToColor(){}
     public void paint (){}
 	
-    public SpielfeldCanvas(Spielfeld einSpielfeld) {
-        dasSpielfeld = einSpielfeld;
-        dasSpielfeld.einSpielfeldCanvas = this;
-        }
+    //public SpielfeldCanvas(Spielfeld einSpielfeld) {
+    //    dasSpielfeld = einSpielfeld;
+    //    dasSpielfeld.einSpielfeldCanvas = this;
+    //    }
 	
-    public Dimension getPreferredSize()
-    {
-        return new Dimension(241,451);	
-    }
+    //public Dimension getPreferredSize()
+    //{
+    //    return new Dimension(241,451);	
+    //}
 	
-    public void paint(Graphics g) {
+    public void Paint() {
 		
 		
         g.setColor(Color.red);
