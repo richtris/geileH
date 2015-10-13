@@ -1,17 +1,16 @@
-package gameplay;
 
-import view.SpielfeldCanvas;
+
+
+namespace RichtrisObjects{
 
 public class Spielfeld {
 
-	public int xmax = 16;
-	public int ymax = 30;
-	public int feld[][] = new int [xmax + 2][ymax + 2];
+	public readonly int xmax = 16;
+	public readonly int ymax = 30;
+	public  int[,] feld = new int[xmax + 2, ymax + 2];
 	public int punkte;
 	public Spielstein aktSpielstein; 
-	
-	public SpielfeldCanvas einSpielfeldCanvas;
-	
+		
 	
 	public Spielfeld(){
 		
@@ -60,7 +59,7 @@ public class Spielfeld {
 		einSpielstein.farbCode = einSpielstein.farbCode + 8;
 		setzen(einSpielstein);
 		punkte += 10;
-		System.out.println(punkte);
+		Console.writeline(punkte);
 		for (int i = 0; i <=xmax;++i){
 			
 		if(feld[i][einSpielstein.y1]==0) break;
@@ -105,10 +104,10 @@ public class Spielfeld {
 			
 		}
 		punkte += 400;
-		System.out.println(punkte);
+		Console.WriteLine(punkte);
 	}
 	
-	private boolean verschiebbar (Spielstein einSpielstein, int x, int y){
+	private bool verschiebbar (Spielstein einSpielstein, int x, int y){
 		
 		Spielstein verschobenerSpielstein = einSpielstein.Kopie();
 		verschobenerSpielstein.verschieben(x, y);
@@ -116,7 +115,7 @@ public class Spielfeld {
 		
 	}
 	
-	private boolean drehbar(Spielstein einSpielstein){
+	private bool drehbar(Spielstein einSpielstein){
 		
 		Spielstein verschobenerSpielstein = einSpielstein.Kopie();
 		verschobenerSpielstein.drehen();
@@ -131,7 +130,7 @@ public class Spielfeld {
 		setzen(stein);
 	}
 	
-	private boolean setzbar(Spielstein s) {
+	private bool setzbar(Spielstein s) {
 		int f = aktSpielstein.farbCode;
 		return (feld[s.x1][s.y1] == f || feld[s.x1][s.y1] == 0) &&
 		(feld[s.x2][s.y2] == f || feld[s.x2][s.y2] == 0) &&
@@ -155,7 +154,7 @@ public class Spielfeld {
 	}
 		
 	public void hardDrop(){		
-		boolean dropped = false;
+		bool dropped = false;
 		do
 		{
 		if (verschiebbar(aktSpielstein, 0, 1)) {
@@ -196,4 +195,5 @@ public class Spielfeld {
 	
 	
 	
+}
 }

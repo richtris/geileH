@@ -46,9 +46,8 @@
   <ItemGroup>
     <Content Include="biohumandigital.java" />
     <Content Include="Highscore.java" />
-    <Content Include="Spielfeld.java" />
-    <Content Include="SpielfeldCanvas.java" />
-    <Content Include="Spielstein.java" />
+    <Compile Include="Spielfeld.cs" />
+    <Compile Include="Spielstein.cs" />
     <Content Include="Tetris.java" />
     <Content Include="ThreatsAndStuff.java" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-package gameplay;
+
+
+namespace RichtrisObjects{
 
 public class Spielstein {
 
@@ -67,7 +69,7 @@ public class Spielstein {
 			
 		}}
 	
-	public void verschieben(int x, int y){
+	public void Verschieben(int x, int y){
 		
 		x1 = x1 + x;
 		x2 = x2 + x;
@@ -78,38 +80,38 @@ public class Spielstein {
 		y2 = y2 + y;
 		y3 = y3 + y;
 		y4 = y4 + y;
-	};
+	}
 	
-	public void drehen(){
+	public void Drehen(){
 		
 		int x,y;
 		
-		x = xkoordDrehen(y2);
-		y = ykoordDrehen(x2);
+		x = XkoordDrehen(y2);
+		y = YkoordDrehen(x2);
 		x2=x;
 		y2=y;
-		x = xkoordDrehen(y3);
-		y = ykoordDrehen(x3);
+		x = XkoordDrehen(y3);
+		y = YkoordDrehen(x3);
 		x3=x;
 		y3=y;
-		x = xkoordDrehen(y4);
-		y = ykoordDrehen(x4);
+		x = XkoordDrehen(y4);
+		y = YkoordDrehen(x4);
 		x4=x;
 		y4=y;
 		
 		
-			};
+			}
 	
-	private int xkoordDrehen(int y){
+	private int XkoordDrehen(int y){
 		
 		return x1 - y1 + y;
-	};
+	}
 	
-	private int ykoordDrehen(int x){
+	private int YkoordDrehen(int x){
 		
 		return y1 + x1 - x;
-	}; 
-	
+	}
+
 	public Spielstein Kopie(){
 		
 		Spielstein neu = new Spielstein(this.farbCode);
@@ -127,4 +129,5 @@ public class Spielstein {
 		
 	}
 	
+}
 }
