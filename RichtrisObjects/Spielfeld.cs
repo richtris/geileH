@@ -2,6 +2,7 @@
 
 
 using System;
+using System.Collections;
 namespace RichtrisObjects{
 
 public class Spielfeld {
@@ -12,7 +13,12 @@ public class Spielfeld {
 	public int punkte;
 	public Spielstein aktSpielstein;
     private Random random = new Random();
-	
+
+    public void Callback(Func<Spielstein> callback)
+    {
+      //  callback(this.aktSpielstein);
+    }
+
 	public Spielfeld(){
 		
 		for(int i=0;i<xmax+2;i++){
@@ -140,7 +146,7 @@ public class Spielfeld {
 	
 	
 	private void NeuerSpielstein(){
-        var randomInt = random.Next(0, 8);
+        var randomInt = random.Next(1, 8);
         aktSpielstein = new Spielstein((int)(randomInt));
 	}
 	

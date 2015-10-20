@@ -1,5 +1,6 @@
 
 
+using System;
 namespace RichtrisObjects{
 
 public class Spielstein {

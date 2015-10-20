@@ -28,6 +28,16 @@ namespace RichtrisGUI
             Cannevas = MyGrid;
             AddLine(1, 50, 1, 50);
             Paint();
+            dasSpielfeld.NeuerStein();
+            CreateSpielsteinZeichnung(dasSpielfeld.aktSpielstein, dasSpielfeld.aktSpielstein.farbCode);
+            Fallen();
+            Fallen();
+            Fallen();
+
+
+            Fallen();
+            Fallen();
+            Fallen();
         }
 
         private void AddLine(double x1, double y1, double x2, double y2)
@@ -46,6 +56,10 @@ namespace RichtrisGUI
         }
 
         private Line Line { get; set; }
+        private void Fallen()
+        {
+            dasSpielfeld.Nach_unten();
+        }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
         {
@@ -92,11 +106,11 @@ namespace RichtrisGUI
             {
                 Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1,j + 1]);
                 //g.setColor(Farbe);
-                ZeichneKaestchen(i, j);
+                ZeichneKaestchen(i, j, Farbe);
             }
         }
     }
-    private void ZeichneKaestchen(int x, int y)
+    private Rectangle ZeichneKaestchen(int x, int y, Color farbe)
     {
         //g.fillRect(x * kbreite + 1, y * kbreite + 1, kbreite - 1, kbreite - 1);
         // Create a Rectangle
@@ -111,11 +125,11 @@ namespace RichtrisGUI
         // Create a blue and a black Brush
 
         SolidColorBrush blueBrush = new SolidColorBrush();
-        blueBrush.Color = Colors.Blue;
+        blueBrush.Color = farbe;
 
         SolidColorBrush blackBrush = new SolidColorBrush();
-        blackBrush.Color = Colors.Black;
-
+       // blackBrush.Color = Colors.Black;
+        blackBrush.Color = farbe;
 
 
         // Set Rectangle's width and color
@@ -132,6 +146,8 @@ namespace RichtrisGUI
         Cannevas.Children.Add(kästchen);
         Canvas.SetLeft(kästchen, x * kbreite + 1);
         Canvas.SetTop(kästchen, y * kbreite + 1);
+
+        return kästchen;
     }
 	
         private Color CodeToColor(int Farbcode) {
@@ -161,16 +177,28 @@ namespace RichtrisGUI
             }
             return Farbe;
             }
-	
-	
-        public void zeichneSpielstein(Spielstein einSpielstein, int Farbcode) {
-            //Graphics g = getGraphics();
-            // g.setColor(CodeToColor(Farbcode));
 
-            ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1);
-            ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1);
-            ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1);
-            ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1);
+        public void STEIN(Spielstein stein)
+        {
+
+
+        }
+
+        private Dictionary<Spielstein, Rectangle[]> steinMap = new Dictionary<Spielstein, Rectangle[]>();
+        public void CreateSpielsteinZeichnung(Spielstein einSpielstein, int Farbcode) {
+            //Graphics g = getGraphics();
+            var farbe = CodeToColor(Farbcode);
+            
+
+            Rectangle[] stein = new Rectangle[4];
+            
+            stein[0] = ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1, farbe);
+            stein[1] = ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1, farbe);
+            stein[2] = ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1, farbe);
+            stein[3] = ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1, farbe);
+
+            steinMap.Add(einSpielstein, stein);
+
             }
 	
     }
