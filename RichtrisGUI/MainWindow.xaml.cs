@@ -24,19 +24,25 @@ namespace RichtrisGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            Cannevas = MyGrid;
+            AddLine(1, 50, 1, 50);
+            Paint();
+        }
+
+        private void AddLine(double x1, double y1, double x2, double y2)
+        {
             // Add a Line Element
             Line = new Line();
             Line.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-            Line.X1 = 1;
-            Line.X2 = 50;
-            Line.Y1 = 1;
-            Line.Y2 = 50;
+            Line.X1 = x1;
+            Line.X2 = x2;
+            Line.Y1 = y1;
+            Line.Y2 = y2;
             Line.HorizontalAlignment = HorizontalAlignment.Left;
             Line.VerticalAlignment = VerticalAlignment.Center;
             Line.StrokeThickness = 2;
-            GameGrid = MyGrid;
-            GameGrid.Children.Add(Line);
-
+            Cannevas.Children.Add(Line);
         }
 
         private Line Line { get; set; }
@@ -47,7 +53,7 @@ namespace RichtrisGUI
             //((YourClass)fe.DataContext).DoYourCommand();
             Line.X2 += 5;
         }
-        private Grid GameGrid;
+        private Canvas Cannevas;
            private int kbreite = 15;
     private Spielfeld dasSpielfeld = new Spielfeld();
 	
@@ -64,30 +70,69 @@ namespace RichtrisGUI
     //{
     //    return new Dimension(241,451);	
     //}
-	
-    //public void Paint() {
-		
-		
-    //    g.setColor(Color.red);
-    //    g.drawString("TETRIS 4 EVER!", 10, 100);
-		
-    //    for (int i = 0; i <= dasSpielfeld.xmax; i++) {
-    //        g.drawLine(i * kbreite, 0, i * kbreite, dasSpielfeld.ymax * kbreite);
-    //    }
-    //    for (int j = 0; j <= dasSpielfeld.ymax; j++) {
-    //        g.drawLine(0, j * kbreite, dasSpielfeld.xmax * kbreite, j * kbreite);
-    //    }
-    //    for (int i = 0; i < dasSpielfeld.xmax; i++ ) {
-    //        for (int j = 0; j < dasSpielfeld.ymax; j++ ) {
-    //            Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1][j + 1]);
-    //            g.setColor(Farbe);
-    //            zeichneKaestchen(g, i, j);
-    //        }
-    //    }
-    //}
-    //    private void zeichneKaestchen(Graphics g, int x, int y) {
-    //    g.fillRect(x * kbreite + 1, y * kbreite + 1, kbreite - 1, kbreite - 1);
-    //    }
+
+    public void Paint()
+    {
+
+
+     //   g.setColor(Color.red);
+     //   g.drawString("TETRIS 4 EVER!", 10, 100);
+
+        for (int i = 0; i <= Spielfeld.xmax; i++)
+        {
+            AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
+        }
+        for (int j = 0; j <= Spielfeld.ymax; j++)
+        {
+            AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
+        }
+        for (int i = 0; i < Spielfeld.xmax; i++)
+        {
+            for (int j = 0; j < Spielfeld.ymax; j++)
+            {
+                Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1,j + 1]);
+                //g.setColor(Farbe);
+                ZeichneKaestchen(i, j);
+            }
+        }
+    }
+    private void ZeichneKaestchen(int x, int y)
+    {
+        //g.fillRect(x * kbreite + 1, y * kbreite + 1, kbreite - 1, kbreite - 1);
+        // Create a Rectangle
+
+        Rectangle kästchen = new Rectangle();
+
+        kästchen.Height = kbreite - 1;
+        kästchen.Width = kbreite - 1;
+
+
+
+        // Create a blue and a black Brush
+
+        SolidColorBrush blueBrush = new SolidColorBrush();
+        blueBrush.Color = Colors.Blue;
+
+        SolidColorBrush blackBrush = new SolidColorBrush();
+        blackBrush.Color = Colors.Black;
+
+
+
+        // Set Rectangle's width and color
+
+        kästchen.StrokeThickness = 1;
+        kästchen.Stroke = blackBrush;
+
+        // Fill rectangle with blue color
+        kästchen.Fill = blueBrush;
+
+
+
+        // Add Rectangle to the Grid.
+        Cannevas.Children.Add(kästchen);
+        Canvas.SetLeft(kästchen, x * kbreite + 1);
+        Canvas.SetTop(kästchen, y * kbreite + 1);
+    }
 	
         private Color CodeToColor(int Farbcode) {
             Color Farbe;
@@ -120,12 +165,12 @@ namespace RichtrisGUI
 	
         public void zeichneSpielstein(Spielstein einSpielstein, int Farbcode) {
             //Graphics g = getGraphics();
-            g.setColor(CodeToColor(Farbcode));
-	
-            //zeichneKaestchen(g, einSpielstein.x1 - 1, einSpielstein.y1 - 1);
-            //zeichneKaestchen(g, einSpielstein.x2 - 1, einSpielstein.y2 - 1);
-            //zeichneKaestchen(g, einSpielstein.x3 - 1, einSpielstein.y3 - 1);
-            //zeichneKaestchen(g, einSpielstein.x4 - 1, einSpielstein.y4 - 1);
+            // g.setColor(CodeToColor(Farbcode));
+
+            ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1);
+            ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1);
+            ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1);
+            ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1);
             }
 	
     }

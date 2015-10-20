@@ -6,8 +6,8 @@ namespace RichtrisObjects{
 
 public class Spielfeld {
 
-	public static readonly int xmax = 16;
-	public static readonly int ymax = 30;
+	public static readonly int xmax = 10;
+	public static readonly int ymax = 20;
 	public  int[,] feld = new int[xmax + 2,ymax + 2];
 	public int punkte;
 	public Spielstein aktSpielstein;
