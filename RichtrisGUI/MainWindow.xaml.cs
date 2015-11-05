@@ -30,7 +30,7 @@ namespace RichtrisGUI
 
             Cannevas = MyGrid;
             AddLine(1, 50, 1, 50);
-            Paint();
+            Paint(true);
             dasSpielfeld.NeuerStein();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
         }
@@ -103,30 +103,35 @@ namespace RichtrisGUI
         {
             dasSpielfeld.Nach_unten();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
 
         private void Rechts()
         {
             dasSpielfeld.Nach_rechts();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
 
         private void Links()
         {
             dasSpielfeld.Nach_links();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
 
         private void Drehen()
         {
             dasSpielfeld.Drehen();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
 
         private void HardDrop()
         {
             dasSpielfeld.HardDrop();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
@@ -153,20 +158,31 @@ namespace RichtrisGUI
     //    return new Dimension(241,451);	
     //}
 
-    public void Paint()
+    private Rectangle[,] spielfeldZeichnung;
+    public void Paint(bool create)
     {
-
+        SolidColorBrush blueBrush = new SolidColorBrush();
 
      //   g.setColor(Color.red);
      //   g.drawString("TETRIS 4 EVER!", 10, 100);
+        if (create)
+        {
+            spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
+        }
 
         for (int i = 0; i <= Spielfeld.xmax; i++)
         {
-            AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
+            if (create)
+            {
+                AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
+            }
         }
         for (int j = 0; j <= Spielfeld.ymax; j++)
         {
-            AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
+            if (create)
+            {
+                AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
+            }
         }
         for (int i = 0; i < Spielfeld.xmax; i++)
         {
@@ -174,7 +190,15 @@ namespace RichtrisGUI
             {
                 Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1,j + 1]);
                 //g.setColor(Farbe);
-                ZeichneKaestchen(i, j, Farbe);
+                if (create)
+                {
+                    spielfeldZeichnung[i, j] = ZeichneKaestchen(i, j, Farbe);
+                }
+                else
+                {
+                    blueBrush.Color = Farbe;
+                    spielfeldZeichnung[i, j].Fill = blueBrush;
+                }
             }
         }
     }
