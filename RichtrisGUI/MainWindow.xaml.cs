@@ -26,6 +26,8 @@ namespace RichtrisGUI
         {
             InitializeComponent();
 
+            this.KeyDown += new KeyEventHandler(OnCanvasKeyDown);
+
             Cannevas = MyGrid;
             AddLine(1, 50, 1, 50);
             Paint();
@@ -46,6 +48,16 @@ namespace RichtrisGUI
         {
             Rechts();
         }
+
+        private void Button_Rotate(object sender, RoutedEventArgs e)
+        {
+            Drehen();
+        }
+
+        private void Button_HardDrop(object sender, RoutedEventArgs e)
+        {
+            //HardDrop();
+        }
         private void AddLine(double x1, double y1, double x2, double y2)
         {
             // Add a Line Element
@@ -62,6 +74,31 @@ namespace RichtrisGUI
         }
 
         private Line Line { get; set; }
+
+
+        private void OnCanvasKeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Right:
+                    Rechts();
+                    break;
+                case Key.Left:
+                    Links();
+                    break;
+                case Key.Down:
+                    Fallen();
+                    break;
+                case Key.Up:
+                    Drehen();
+                    break;
+                case Key.Space:
+                    HardDrop();
+                    break;
+            }
+        }
+
+
         private void Fallen()
         {
             dasSpielfeld.Nach_unten();
@@ -77,6 +114,18 @@ namespace RichtrisGUI
         private void Links()
         {
             dasSpielfeld.Nach_links();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+        }
+
+        private void Drehen()
+        {
+            dasSpielfeld.Drehen();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+        }
+
+        private void HardDrop()
+        {
+            dasSpielfeld.HardDrop();
             UpdateZeichnung(dasSpielfeld.aktSpielstein);
         }
 
