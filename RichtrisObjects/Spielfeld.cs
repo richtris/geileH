@@ -19,6 +19,8 @@ public class Spielfeld {
       //  callback(this.aktSpielstein);
     }
 
+
+
 	public Spielfeld(){
 		
 		for(int i=0;i<xmax+2;i++){

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,22 +30,27 @@ namespace RichtrisGUI
             AddLine(1, 50, 1, 50);
             Paint();
             dasSpielfeld.NeuerStein();
-            CreateSpielsteinZeichnung(dasSpielfeld.aktSpielstein, dasSpielfeld.aktSpielstein.farbCode);
-            Fallen();
-            Fallen();
-            Fallen();
-
-
-            Fallen();
-            Fallen();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+        }
+        private void Button_SoftDrop(object sender, RoutedEventArgs e)
+        {
             Fallen();
         }
 
+        private void Button_Left(object sender, RoutedEventArgs e)
+        {
+            Links();
+        }
+
+        private void Button_Right(object sender, RoutedEventArgs e)
+        {
+            Rechts();
+        }
         private void AddLine(double x1, double y1, double x2, double y2)
         {
             // Add a Line Element
             Line = new Line();
-            Line.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            Line.Stroke = System.Windows.Media.Brushes.Tan;
             Line.X1 = x1;
             Line.X2 = x2;
             Line.Y1 = y1;
@@ -59,6 +65,19 @@ namespace RichtrisGUI
         private void Fallen()
         {
             dasSpielfeld.Nach_unten();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+        }
+
+        private void Rechts()
+        {
+            dasSpielfeld.Nach_rechts();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+        }
+
+        private void Links()
+        {
+            dasSpielfeld.Nach_links();
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
         }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
@@ -185,21 +204,53 @@ namespace RichtrisGUI
         }
 
         private Dictionary<Spielstein, Rectangle[]> steinMap = new Dictionary<Spielstein, Rectangle[]>();
-        public void CreateSpielsteinZeichnung(Spielstein einSpielstein, int Farbcode) {
+        public void UpdateZeichnung(Spielstein einSpielstein)
+        {
             //Graphics g = getGraphics();
-            var farbe = CodeToColor(Farbcode);
-            
+            var farbe = CodeToColor(einSpielstein.farbCode);
 
-            Rectangle[] stein = new Rectangle[4];
-            
-            stein[0] = ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1, farbe);
-            stein[1] = ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1, farbe);
-            stein[2] = ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1, farbe);
-            stein[3] = ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1, farbe);
 
-            steinMap.Add(einSpielstein, stein);
+            Rectangle[] stein;
+
+            if (steinMap.TryGetValue(einSpielstein, out stein))
+            {
+                UpdateSpielstein(einSpielstein, stein);
+            }
+            else
+            {
+                stein = new Rectangle[4];
+
+                stein[0] = ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1, farbe);
+                stein[1] = ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1, farbe);
+                stein[2] = ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1, farbe);
+                stein[3] = ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1, farbe);
+
+                steinMap.Add(einSpielstein, stein);
 
             }
-	
+        }
+
+        private void UpdateSpielstein(Spielstein einSpielstein, Rectangle[] stein)
+        {
+            if (steinMap.TryGetValue(einSpielstein, out stein))
+            {
+                var coords = new int[,] {
+                    {einSpielstein.x1 - 1, einSpielstein.y1 - 1},
+                    {einSpielstein.x2 - 1, einSpielstein.y2 - 1},
+                    {einSpielstein.x3 - 1, einSpielstein.y3 - 1},
+                    {einSpielstein.x4 - 1, einSpielstein.y4 - 1},
+                };
+
+                var i=0;
+                foreach (var kästchen in stein)
+                {
+                    Canvas.SetLeft(kästchen, coords[i,0] * kbreite + 1);
+                    Canvas.SetTop(kästchen, coords[i, 1] * kbreite + 1);
+                        i++;
+                }
+            
+            }
+
+        }
     }
 }

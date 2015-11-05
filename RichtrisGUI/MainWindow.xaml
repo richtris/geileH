@@ -3,6 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="550" Width="525">
     <Canvas Name="MyGrid" HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="300">
-
+        <Button Content="Soft Drop"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_SoftDrop" Canvas.Left="371" Canvas.Top="280"/>
+        <Button Content="Left"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_Left" Canvas.Left="312" Canvas.Top="248"/>
+        <Button Content="Right"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_Right" Canvas.Left="426" Canvas.Top="248"/>
     </Canvas>
 </Window>
