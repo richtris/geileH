@@ -22,11 +22,16 @@
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_Rotate" Canvas.Left="371" Canvas.Top="221"/>
+		Click="Button_Rotate" Canvas.Left="371" Canvas.Top="195"/>
         <Button Content="HardDrop"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
 		Click="Button_HardDrop" Canvas.Left="371" Canvas.Top="302"/>
+        <Button Content="Up"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_Up" Canvas.Left="371" Canvas.Top="221"/>
     </Canvas>
 </Window>

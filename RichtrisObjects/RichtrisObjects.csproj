@@ -42,6 +42,7 @@
     <Compile Include="Bewegungsrichtung.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Highscore.cs" />
+    <Compile Include="ITetrisMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

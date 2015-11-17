@@ -20,19 +20,18 @@ namespace RichtrisGUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ITetrisMain
     {
         public MainWindow()
         {
             InitializeComponent();
 
             this.KeyDown += new KeyEventHandler(OnCanvasKeyDown);
-
+            dasSpielfeld = new Spielfeld(this);
             Cannevas = MyGrid;
             AddLine(1, 50, 1, 50);
             Paint(true);
             dasSpielfeld.NeuerStein();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
         }
         private void Button_SoftDrop(object sender, RoutedEventArgs e)
         {
@@ -57,6 +56,11 @@ namespace RichtrisGUI
         private void Button_HardDrop(object sender, RoutedEventArgs e)
         {
             //HardDrop();
+        }
+
+        private void Button_Up(object sender, RoutedEventArgs e)
+        {
+            Hoch();
         }
         private void AddLine(double x1, double y1, double x2, double y2)
         {
@@ -90,10 +94,16 @@ namespace RichtrisGUI
                     Fallen();
                     break;
                 case Key.Up:
-                    Drehen();
+                    Hoch();
                     break;
                 case Key.Space:
+                    Drehen();
+                    break;
+                case Key.LeftCtrl:
                     HardDrop();
+                    break;
+                case Key.N:
+                    FreezeAndNew();
                     break;
             }
         }
@@ -102,36 +112,36 @@ namespace RichtrisGUI
         private void Fallen()
         {
             dasSpielfeld.Nach_unten();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
-            Paint(false);
         }
 
         private void Rechts()
         {
             dasSpielfeld.Nach_rechts();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
-            Paint(false);
         }
 
         private void Links()
         {
             dasSpielfeld.Nach_links();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
-            Paint(false);
         }
 
         private void Drehen()
         {
             dasSpielfeld.Drehen();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
-            Paint(false);
         }
 
         private void HardDrop()
         {
             dasSpielfeld.HardDrop();
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
-            Paint(false);
+        }
+
+        private void Hoch()
+        {
+            dasSpielfeld.Nach_oben();
+        }
+
+        private void FreezeAndNew()
+        {
+            dasSpielfeld.AblegenUndNeu();
         }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
@@ -142,7 +152,7 @@ namespace RichtrisGUI
         }
         private Canvas Cannevas;
            private int kbreite = 15;
-    private Spielfeld dasSpielfeld = new Spielfeld();
+           private Spielfeld dasSpielfeld;
 	
    // public SpielfeldCanvas(){}
     private void CodeToColor(){}
@@ -158,42 +168,45 @@ namespace RichtrisGUI
     //    return new Dimension(241,451);	
     //}
 
-        private SolidColorBrush spielfeldBrush = new SolidColorBrush();
+    private Brush[,] spielfeldBrush;
 
     private Rectangle[,] spielfeldZeichnung;
     public void Paint(bool create)
     {
-     //   g.setColor(Color.red);
-     //   g.drawString("TETRIS 4 EVER!", 10, 100);
-           
-        if(create)
-        {
-        spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
+        //   g.setColor(Color.red);
+        //   g.drawString("TETRIS 4 EVER!", 10, 100);
 
-        for (int i = 0; i <= Spielfeld.xmax; i++)
+        if (create)
         {
+            spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
+            spielfeldBrush = new Brush[Spielfeld.xmax, Spielfeld.ymax];
+
+            for (int i = 0; i <= Spielfeld.xmax; i++)
+            {
                 AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
-        }
-        for (int j = 0; j <= Spielfeld.ymax; j++)
-        {
+            }
+            for (int j = 0; j <= Spielfeld.ymax; j++)
+            {
                 AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
-        }
+            }
 
         }
         for (int i = 0; i < Spielfeld.xmax; i++)
         {
             for (int j = 0; j < Spielfeld.ymax; j++)
             {
-                Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1,j + 1]);
+                Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1, j + 1]);
                 //g.setColor(Farbe);
                 if (create)
                 {
-                    spielfeldZeichnung[i, j] = ZeichneKaestchen(i, j, Farbe);
+                    var kaestchen = spielfeldZeichnung[i, j] = ZeichneKaestchen(i, j, Farbe);
+                    spielfeldBrush[i, j] = kaestchen.Fill;
                 }
                 else
                 {
-                    spielfeldBrush.Color = Farbe;
-                    spielfeldZeichnung[i, j].Fill = spielfeldBrush;
+                    var brush = (SolidColorBrush)spielfeldBrush[i, j];
+                    brush.Color = Farbe;
+                    //  spielfeldZeichnung[i, j].Fill = spielfeldBrush.Color;
                 }
             }
         }
@@ -320,6 +333,12 @@ namespace RichtrisGUI
             
             }
 
+        }
+
+        public void Update(Spielfeld spielfeld)
+        {
+            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            Paint(false);
         }
     }
 }
