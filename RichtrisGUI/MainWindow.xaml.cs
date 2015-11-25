@@ -357,5 +357,14 @@ namespace RichtrisGUI
                 steinMap.Remove(spielstein);
             
         }
+
+        public void GameOver()
+        {
+            MessageBoxResult result = MessageBox.Show("Nochmal?", "GameOver.", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+     //           Application.Current.Shutdown();
+            }
+        }
     }
 }

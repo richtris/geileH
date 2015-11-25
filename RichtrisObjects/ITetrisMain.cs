@@ -11,5 +11,7 @@ namespace RichtrisObjects
         void Update(Spielfeld spielfeld, bool remove = false);
 
         void Remove(Spielstein einSpielstein);
+
+        void GameOver();
     }
 }
