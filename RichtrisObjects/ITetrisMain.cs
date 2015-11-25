@@ -8,6 +8,8 @@ namespace RichtrisObjects
 {
     public interface ITetrisMain
     {
-        void Update(Spielfeld spielfeld);
+        void Update(Spielfeld spielfeld, bool remove = false);
+
+        void Remove(Spielstein einSpielstein);
     }
 }

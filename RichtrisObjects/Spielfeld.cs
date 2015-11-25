@@ -74,6 +74,7 @@ namespace RichtrisObjects
         {
             einSpielstein.farbCode = einSpielstein.farbCode + 8;
             Setzen(einSpielstein);
+            mainApp.Update(this,true);
 
             punkte += 10;
             Console.WriteLine(punkte);
@@ -106,7 +107,7 @@ namespace RichtrisObjects
             }
 
 
-            mainApp.Update(this);
+        //    mainApp.Update(this);
 
         }
         private void ZeileLöschen(int y)
@@ -130,7 +131,7 @@ namespace RichtrisObjects
             }
             punkte += 400;
             Console.WriteLine(punkte);
-            mainApp.Update(this);
+           // mainApp.Update(this);
         }
 
         private bool Verschiebbar(Spielstein einSpielstein, int x, int y)
@@ -179,14 +180,13 @@ namespace RichtrisObjects
             if (Verschiebbar(aktSpielstein, 0, 1))
             {
                 Verschieben(aktSpielstein, 0, 1);
+                mainApp.Update(this);
             }
             else
             {
                 Ablegen(aktSpielstein);
                 NeuerStein();
             }
-
-            mainApp.Update(this);
         }
 
         public void AblegenUndNeu()

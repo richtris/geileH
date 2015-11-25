@@ -94,13 +94,13 @@ namespace RichtrisGUI
                     Fallen();
                     break;
                 case Key.Up:
-                    Hoch();
-                    break;
-                case Key.Space:
                     Drehen();
                     break;
-                case Key.LeftCtrl:
+                case Key.Space:
                     HardDrop();
+                    break;
+                case Key.LeftCtrl:
+                    Hoch();
                     break;
                 case Key.N:
                     FreezeAndNew();
@@ -286,7 +286,7 @@ namespace RichtrisGUI
         }
 
         private Dictionary<Spielstein, Rectangle[]> steinMap = new Dictionary<Spielstein, Rectangle[]>();
-        public void UpdateZeichnung(Spielstein einSpielstein)
+        public void UpdateZeichnung(Spielstein einSpielstein, bool remove = false)
         {
             //Graphics g = getGraphics();
             var farbe = CodeToColor(einSpielstein.farbCode);
@@ -296,7 +296,14 @@ namespace RichtrisGUI
 
             if (steinMap.TryGetValue(einSpielstein, out stein))
             {
-                UpdateSpielstein(einSpielstein, stein);
+                if (remove)
+                {
+                     Remove(einSpielstein);
+                }
+                else
+                {
+                    UpdateSpielstein(einSpielstein, stein);
+                }
             }
             else
             {
@@ -335,10 +342,20 @@ namespace RichtrisGUI
 
         }
 
-        public void Update(Spielfeld spielfeld)
+        public void Update(Spielfeld spielfeld, bool remove = false)
         {
-            UpdateZeichnung(dasSpielfeld.aktSpielstein);
+            UpdateZeichnung(dasSpielfeld.aktSpielstein, remove);
             Paint(false);
+        }
+
+        public void Remove(Spielstein spielstein)
+        {
+                foreach(var kästchen in steinMap[spielstein])
+                {
+                    Cannevas.Children.Remove(kästchen);
+                }
+                steinMap.Remove(spielstein);
+            
         }
     }
 }
