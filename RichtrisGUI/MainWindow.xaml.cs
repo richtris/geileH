@@ -288,6 +288,8 @@ namespace RichtrisGUI
         private Dictionary<Spielstein, Rectangle[]> steinMap = new Dictionary<Spielstein, Rectangle[]>();
         public void UpdateZeichnung(Spielstein einSpielstein, bool remove = false)
         {
+            if (einSpielstein == null)
+                return;
             //Graphics g = getGraphics();
             var farbe = CodeToColor(einSpielstein.farbCode);
 
@@ -361,11 +363,27 @@ namespace RichtrisGUI
 
         public void GameOver()
         {
-            MessageBoxResult result = MessageBox.Show("Nochmal?", "GameOver.", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No)
-            {
+            this.Dispatcher.Invoke((Action<double, double, string, Color>)Text, 30, 30, "Game Over", Colors.PaleVioletRed);
+           // MessageBoxResult result = MessageBox.Show("Nochmal?", "GameOver.", MessageBoxButton.YesNo, MessageBoxImage.Question);
+           // if (result == MessageBoxResult.No)
+          //  {
      //           Application.Current.Shutdown();
-            }
+         //   }
         }
+
+        private void Text (double x, double y, string text, Color color) 
+            {
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = text;
+                textBlock.Background = new SolidColorBrush(Colors.PeachPuff);
+                textBlock.Foreground = new SolidColorBrush(color);
+                textBlock.FontSize = 20;
+                textBlock.FontWeight = FontWeights.ExtraBold;
+                Canvas.SetLeft(textBlock, x);
+                Canvas.SetTop(textBlock, y);
+                Canvas.SetZIndex(textBlock, 10);
+                Cannevas.Children.Add(textBlock);
+                
+            }
     }
 }

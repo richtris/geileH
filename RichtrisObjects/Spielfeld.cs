@@ -19,16 +19,13 @@ namespace RichtrisObjects
         private Random random = new Random();
         private ITetrisMain mainApp;
 
-        private Timer gravityTimer;
-        private double gravityInterval = 2000;
+        private LevelManager levelManager;
 
         public Spielfeld(ITetrisMain mainApp)
         {
             this.mainApp = mainApp;
-            this.gravityTimer = new Timer(gravityInterval);
-            gravityTimer.Elapsed += OnGravity;
-
-
+            this.levelManager = new LevelManager(this);
+            
             for (int i = 0; i < xmax + 2; i++)
             {
 
@@ -52,10 +49,34 @@ namespace RichtrisObjects
         {
             NeuerSpielstein();
             mainApp.Update(this, false);
-            gravityTimer.Start();
+            levelManager.Start();
         }
 
-        private void OnGravity(Object source, System.Timers.ElapsedEventArgs e)
+
+        private void GameOver()
+        {
+            aktSpielstein = null;
+            levelManager.Stop();
+            mainApp.GameOver();
+        }
+
+        private void NeuerSpielstein()
+        {
+            var randomInt = random.Next(1, 8);
+            var neuerStein = new Spielstein((int)(randomInt));
+            if (Setzbar(neuerStein))
+            {
+                aktSpielstein = neuerStein;
+                
+                if(Verschiebbar(aktSpielstein,0,1) || Verschiebbar(aktSpielstein,1,0) || Verschiebbar(aktSpielstein,-1,0))
+                {
+                    return;
+                }
+            }
+            GameOver();
+        }
+
+        public void OnGravity(Object source, System.Timers.ElapsedEventArgs e)
         {
               this.Nach_unten();
         }
@@ -92,6 +113,9 @@ namespace RichtrisObjects
 
         private void Ablegen(Spielstein einSpielstein)
         {
+            if (einSpielstein == null)
+                return;
+
             einSpielstein.farbCode = einSpielstein.farbCode + 8;
             Setzen(einSpielstein);
             mainApp.Update(this,true);
@@ -149,13 +173,15 @@ namespace RichtrisObjects
                 }
 
             }
-            punkte += 400;
-            Console.WriteLine(punkte);
+            levelManager.LinesCleared(1);
+           // Console.WriteLine(punkte);
            // mainApp.Update(this);
         }
 
         private bool Verschiebbar(Spielstein einSpielstein, int x, int y)
         {
+            if (einSpielstein == null)
+                return false;
 
             Spielstein verschobenerSpielstein = einSpielstein.Kopie();
             verschobenerSpielstein.Verschieben(x, y);
@@ -165,7 +191,8 @@ namespace RichtrisObjects
 
         private bool Drehbar(Spielstein einSpielstein)
         {
-
+            if (einSpielstein == null)
+                return false;
             Spielstein verschobenerSpielstein = einSpielstein.Kopie();
             verschobenerSpielstein.Drehen();
             return Setzbar(verschobenerSpielstein);
@@ -188,20 +215,6 @@ namespace RichtrisObjects
             (feld[s.x4, s.y4] == f || feld[s.x4, s.y4] == 0);
         }
 
-
-        private void NeuerSpielstein()
-        {
-            var randomInt = random.Next(1, 8);
-            var neuerStein = new Spielstein((int)(randomInt));
-            if (Setzbar(neuerStein))
-            {
-                aktSpielstein = neuerStein;
-            }
-            else
-            {
-                //mainApp.GameOver();
-            }
-        }
 
         public void Nach_unten()
         {
