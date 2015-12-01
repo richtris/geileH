@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections;
+using System.Timers;
+
 namespace RichtrisObjects
 {
 
@@ -17,9 +19,15 @@ namespace RichtrisObjects
         private Random random = new Random();
         private ITetrisMain mainApp;
 
+        private Timer gravityTimer;
+        private double gravityInterval = 2000;
+
         public Spielfeld(ITetrisMain mainApp)
         {
             this.mainApp = mainApp;
+            this.gravityTimer = new Timer(gravityInterval);
+            gravityTimer.Elapsed += OnGravity;
+
 
             for (int i = 0; i < xmax + 2; i++)
             {
@@ -38,6 +46,18 @@ namespace RichtrisObjects
                 }
             }
 
+        }
+
+        public void StarteSpiel()
+        {
+            NeuerSpielstein();
+            mainApp.Update(this, false);
+            gravityTimer.Start();
+        }
+
+        private void OnGravity(Object source, System.Timers.ElapsedEventArgs e)
+        {
+              this.Nach_unten();
         }
 
         private void Loeschen(Spielstein stein)

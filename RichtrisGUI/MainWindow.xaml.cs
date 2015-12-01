@@ -31,7 +31,7 @@ namespace RichtrisGUI
             Cannevas = MyGrid;
             AddLine(1, 50, 1, 50);
             Paint(true);
-            dasSpielfeld.NeuerStein();
+            dasSpielfeld.StarteSpiel();
         }
         private void Button_SoftDrop(object sender, RoutedEventArgs e)
         {
@@ -344,8 +344,9 @@ namespace RichtrisGUI
 
         public void Update(Spielfeld spielfeld, bool remove = false)
         {
-            UpdateZeichnung(dasSpielfeld.aktSpielstein, remove);
-            Paint(false);
+            this.Dispatcher.Invoke((Action<Spielstein, bool>)UpdateZeichnung, dasSpielfeld.aktSpielstein, remove);
+            // UpdateZeichnung(dasSpielfeld.aktSpielstein, remove);
+            this.Dispatcher.Invoke((Action<bool>)Paint,false);
         }
 
         public void Remove(Spielstein spielstein)
