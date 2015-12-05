@@ -237,7 +237,7 @@ namespace RichtrisObjects
         private bool Setzbar(Spielstein s)
         {
             int f = s.farbCode;
-            return (feld[s.x1, s.              y1] == f || feld[s.x1, s.y1] == 0) &&
+            return (feld[s.x1, s.y1] == f || feld[s.x1, s.y1] == 0) &&
             (feld[s.x2, s.y2] == f || feld[s.x2, s.y2] == 0) &&
             (feld[s.x3, s.y3] == f || feld[s.x3, s.y3] == 0) &&
             (feld[s.x4, s.y4] == f || feld[s.x4, s.y4] == 0);
