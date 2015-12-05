@@ -2,36 +2,41 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="550" Width="525">
-    <Canvas Name="MyGrid" HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="300" KeyDown="OnCanvasKeyDown">
+    <Canvas Name="MyGrid" HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="300" KeyDown="OnCanvasKeyDown" KeyboardNavigation.DirectionalNavigation="None">
+        <Button Content="New Game"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_NewGame" Canvas.Left="371" Canvas.Top="137" Focusable="False"/>
         <Button Content="Soft Drop"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_SoftDrop" Canvas.Left="371" Canvas.Top="280"/>
+		Click="Button_SoftDrop" Canvas.Left="371" Canvas.Top="301" Focusable="False"/>
         <Button Content="Left"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_Left" Canvas.Left="312" Canvas.Top="248"/>
+		Click="Button_Left" Canvas.Left="312" Canvas.Top="248" Focusable="False"/>
         <Button Content="Right"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_Right" Canvas.Left="426" Canvas.Top="248"/>
+		Click="Button_Right" Canvas.Left="426" Canvas.Top="248" Focusable="False"/>
         <Button Content="Rotate"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_Rotate" Canvas.Left="371" Canvas.Top="195"/>
+		Click="Button_Rotate" Canvas.Left="371" Canvas.Top="195" Focusable="False"/>
         <Button Content="HardDrop"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_HardDrop" Canvas.Left="371" Canvas.Top="302"/>
+		Click="Button_HardDrop" Canvas.Left="371" Canvas.Top="279" Focusable="False"/>
         <Button Content="Up"
 		HorizontalAlignment="Right"
 		VerticalAlignment="Top"
 		Width="75"
-		Click="Button_Up" Canvas.Left="371" Canvas.Top="221"/>
+		Click="Button_Up" Canvas.Left="371" Canvas.Top="221" Focusable="False"/>
     </Canvas>
 </Window>

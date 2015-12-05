@@ -21,11 +21,21 @@ namespace RichtrisObjects
 
         private LevelManager levelManager;
 
+        public enum GameStates
+        {
+           New, Running, GameOver
+        }
+
+        public GameStates State { get; private set; }
         public Spielfeld(ITetrisMain mainApp)
         {
             this.mainApp = mainApp;
             this.levelManager = new LevelManager(this);
-            
+            this.State = GameStates.New;
+        }
+
+        private void InitSpielfeld()
+        {
             for (int i = 0; i < xmax + 2; i++)
             {
 
@@ -42,20 +52,33 @@ namespace RichtrisObjects
                         feld[i, j] = 0;
                 }
             }
-
         }
 
         public void StarteSpiel()
         {
+            if (!(State == GameStates.New))
+            {
+                ResetSpiel();
+            }
+            InitSpielfeld();
+            mainApp.CreateMap();
             NeuerSpielstein();
-            mainApp.Update(this, false);
             levelManager.Start();
+            mainApp.Update(this, false);
+            State = GameStates.Running;
+
         }
 
+        public void ResetSpiel()
+        {
+            levelManager.Reset();
+            aktSpielstein = null;
+            mainApp.ResetView();
+        }
 
         private void GameOver()
         {
-            aktSpielstein = null;
+            State = GameStates.GameOver;
             levelManager.Stop();
             mainApp.GameOver();
         }
@@ -72,7 +95,12 @@ namespace RichtrisObjects
                 {
                     return;
                 }
+                else
+                {
+                    Setzen(aktSpielstein);
+                }
             }
+            aktSpielstein = null;
             GameOver();
         }
 
@@ -226,7 +254,10 @@ namespace RichtrisObjects
             else
             {
                 Ablegen(aktSpielstein);
-                NeuerStein();
+                if (State == GameStates.Running)
+                {
+                    NeuerStein();
+                }
             }
         }
 

@@ -16,11 +16,30 @@ namespace RichtrisObjects
 
         private double gravityInterval;
          
-        private int level = 1;
-        private int linesToNextLevel = 1;
+        private int linesPerLevel = 10;
         private int maxLevel = 20;
-
         private int lineCounter = 0;
+        public int LineCounter { 
+            get { return lineCounter; } 
+            private set {
+                lineCounter = value;
+                UpdateLevel();
+            }
+        }
+        private int level = 1;
+        public int Level {
+            get { return level; }
+            private set
+            {
+                level = value;
+                this.gravityTimer.Interval = startInterval - ((level - 1) * startInterval * 0.10); 
+            }
+        }
+
+        private void UpdateLevel()
+        {
+            Level = (lineCounter / linesPerLevel) + 1;
+        }
 
         public LevelManager(Spielfeld spielfeld)
         {
@@ -33,6 +52,12 @@ namespace RichtrisObjects
             this.gravityTimer.Start();
         }
 
+        public void Reset()
+        {
+            this.gravityTimer.Interval = startInterval;
+            this.LineCounter = 0;
+        }
+
         public void Stop()
         {
             this.gravityTimer.Stop();
@@ -40,23 +65,7 @@ namespace RichtrisObjects
 
         public void LinesCleared(int count)
         {
-            lineCounter += count;
-            var newlevel = (lineCounter / linesToNextLevel) + 1;
-            if (newlevel >= maxLevel)
-            {
-                newlevel = maxLevel;
-            }
-
-            if(newlevel > level)
-            {
-                int levelUp = newlevel - level;
-                for (int i = levelUp; i > 0; i--)
-                {
-                    gravityTimer.Interval *= 0.8;
-                }
-                level = newlevel;
-            }
-            Console.WriteLine("Level: {0}",level);
+            LineCounter += count;
         }
 
     }

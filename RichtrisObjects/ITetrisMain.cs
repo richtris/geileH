@@ -8,7 +8,10 @@ namespace RichtrisObjects
 {
     public interface ITetrisMain
     {
+        void CreateMap();
         void Update(Spielfeld spielfeld, bool remove = false);
+
+        void ResetView();
 
         void Remove(Spielstein einSpielstein);
 

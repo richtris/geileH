@@ -29,8 +29,16 @@ namespace RichtrisGUI
             this.KeyDown += new KeyEventHandler(OnCanvasKeyDown);
             dasSpielfeld = new Spielfeld(this);
             Cannevas = MyGrid;
-            AddLine(1, 50, 1, 50);
-            Paint(true);
+            dasSpielfeld.StarteSpiel();
+        }
+
+        private void Button_NewGame(object sender, RoutedEventArgs e)
+        {
+            StartGame();
+        }
+
+        private void StartGame()
+        {
             dasSpielfeld.StarteSpiel();
         }
         private void Button_SoftDrop(object sender, RoutedEventArgs e)
@@ -55,7 +63,7 @@ namespace RichtrisGUI
 
         private void Button_HardDrop(object sender, RoutedEventArgs e)
         {
-            //HardDrop();
+            HardDrop();
         }
 
         private void Button_Up(object sender, RoutedEventArgs e)
@@ -84,6 +92,9 @@ namespace RichtrisGUI
         {
             switch(e.Key)
             {
+                case Key.N:
+                    StartGame();
+                    break;
                 case Key.Right:
                     Rechts();
                     break;
@@ -102,7 +113,7 @@ namespace RichtrisGUI
                 case Key.LeftCtrl:
                     Hoch();
                     break;
-                case Key.N:
+                case Key.X:
                     FreezeAndNew();
                     break;
             }
@@ -168,10 +179,15 @@ namespace RichtrisGUI
     //    return new Dimension(241,451);	
     //}
 
+    public void CreateMap()
+    {
+        Paint(true);
+    }
+
     private Brush[,] spielfeldBrush;
 
     private Rectangle[,] spielfeldZeichnung;
-    public void Paint(bool create)
+    private void Paint(bool create)
     {
         //   g.setColor(Color.red);
         //   g.drawString("TETRIS 4 EVER!", 10, 100);
@@ -307,7 +323,7 @@ namespace RichtrisGUI
                     UpdateSpielstein(einSpielstein, stein);
                 }
             }
-            else
+            else if(!remove)
             {
                 stein = new Rectangle[4];
 
@@ -351,6 +367,14 @@ namespace RichtrisGUI
             this.Dispatcher.Invoke((Action<bool>)Paint,false);
         }
 
+        public void ResetView()
+        {
+            spielfeldBrush = null;
+            spielfeldZeichnung = null;
+            steinMap = new Dictionary<Spielstein, Rectangle[]>();
+            RemoveInGameMessage();
+            Paint(true);
+        }
         public void Remove(Spielstein spielstein)
         {
                 foreach(var kästchen in steinMap[spielstein])
@@ -371,19 +395,34 @@ namespace RichtrisGUI
          //   }
         }
 
+        private TextBlock inGameMessage;
         private void Text (double x, double y, string text, Color color) 
             {
-                TextBlock textBlock = new TextBlock();
-                textBlock.Text = text;
-                textBlock.Background = new SolidColorBrush(Colors.PeachPuff);
-                textBlock.Foreground = new SolidColorBrush(color);
-                textBlock.FontSize = 20;
-                textBlock.FontWeight = FontWeights.ExtraBold;
-                Canvas.SetLeft(textBlock, x);
-                Canvas.SetTop(textBlock, y);
-                Canvas.SetZIndex(textBlock, 10);
-                Cannevas.Children.Add(textBlock);
+                if(inGameMessage != null)
+                {
+                    RemoveInGameMessage();
+                }
+                inGameMessage = new TextBlock();
+                inGameMessage.Text = text;
+                inGameMessage.Background = new SolidColorBrush(Colors.PeachPuff);
+                inGameMessage.Foreground = new SolidColorBrush(color);
+                inGameMessage.FontSize = 20;
+                inGameMessage.FontWeight = FontWeights.ExtraBold;
+                Canvas.SetLeft(inGameMessage, x);
+                Canvas.SetTop(inGameMessage, y);
+                Canvas.SetZIndex(inGameMessage, 10);
+                Cannevas.Children.Add(inGameMessage);
                 
             }
+
+        private void RemoveInGameMessage()
+        {
+            if (Cannevas.Children.Contains(inGameMessage))
+            {
+                Cannevas.Children.Remove(inGameMessage);
+            }
+
+            inGameMessage = null;
+        }
     }
 }
