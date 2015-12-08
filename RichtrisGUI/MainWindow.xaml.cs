@@ -24,7 +24,7 @@ namespace RichtrisGUI
             InitializeComponent();
 
             this.KeyDown += new KeyEventHandler(OnCanvasKeyDown);
-            dasSpielfeld = new Spielfeld(this);
+            dasSpielfeld = new Spielfeld(this, new CetrisStatistik());
             SpielfeldCanvas = MyGrid;
             dasSpielfeld.StarteSpiel();
         }
@@ -199,7 +199,7 @@ namespace RichtrisGUI
         {
             for (int j = 0; j < Spielfeld.ymax; j++)
             {
-                Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1, j + 1]);
+                Color Farbe = CodeToColor(dasSpielfeld.FeldMatrix[i + 1, j + 1]);
 
                 if (create)
                 {

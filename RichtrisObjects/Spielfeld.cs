@@ -8,16 +8,19 @@ using System.Timers;
 namespace RichtrisObjects
 {
 
-    public class Spielfeld
+    public class Spielfeld : ISpielfeld
     {
 
         public static readonly int xmax = 10;
         public static readonly int ymax = 20;
-        public int[,] feld = new int[xmax + 2, ymax + 2];
+        private int[,] feld = new int[xmax + 2, ymax + 2];
+        public int[,] FeldMatrix { get { return feld; } }
+
         public int punkte;
         public Spielstein aktSpielstein;
         private Random random = new Random();
         private ITetrisMain mainApp;
+        private IStatistik stats;
 
         private LevelManager levelManager;
 
@@ -27,9 +30,10 @@ namespace RichtrisObjects
         }
 
         public GameStates State { get; private set; }
-        public Spielfeld(ITetrisMain mainApp)
+        public Spielfeld(ITetrisMain mainApp, IStatistik stats)
         {
             this.mainApp = mainApp;
+            this.stats = stats;
             this.levelManager = new LevelManager(this);
             this.State = GameStates.New;
         }
@@ -178,7 +182,7 @@ namespace RichtrisObjects
                 if (i == xmax) ZeileLöschen(einSpielstein.y4);
             }
 
-
+            stats.Punkte += 100;
         //    mainApp.Update(this);
 
         }

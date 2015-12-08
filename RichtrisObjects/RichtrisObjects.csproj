@@ -42,6 +42,8 @@
     <Compile Include="Bewegungsrichtung.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Highscore.cs" />
+    <Compile Include="ISpielfeld.cs" />
+    <Compile Include="IStatistik.cs" />
     <Compile Include="ITetrisMain.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +53,7 @@
     <Content Include="Highscore.java" />
     <Compile Include="Spielfeld.cs" />
     <Compile Include="Spielstein.cs" />
+    <Compile Include="Statistik.cs" />
     <Compile Include="Tetris.cs" />
     <Content Include="Tetris.java" />
     <Content Include="ThreatsAndStuff.java" />
