@@ -67,6 +67,14 @@ namespace RichtrisGUI
         {
             Hoch();
         }
+
+        private void Button_Musik(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri(@"../../richtris.mp3", UriKind.Relative);
+            var player = new MediaPlayer();
+            player.Open(uri);
+            player.Play();
+        }
         private void AddLine(double x1, double y1, double x2, double y2)
         {
             Line = new Line();
@@ -390,6 +398,11 @@ namespace RichtrisGUI
             }
 
             inGameMessage = null;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

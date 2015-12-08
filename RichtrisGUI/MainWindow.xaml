@@ -38,5 +38,10 @@
 		VerticalAlignment="Top"
 		Width="75"
 		Click="Button_Up" Canvas.Left="371" Canvas.Top="221" Focusable="False"/>
+        <Button Content="Musik"
+        	HorizontalAlignment="Right"
+        	VerticalAlignment="Top"
+        	Width="75"
+        	Click="Button_Musik" Canvas.Left="371" Canvas.Top="55" Focusable="False"/>
     </Canvas>
 </Window>
