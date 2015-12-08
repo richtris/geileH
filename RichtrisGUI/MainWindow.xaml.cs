@@ -17,9 +17,6 @@ using RichtrisObjects;
 
 namespace RichtrisGUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, ITetrisMain
     {
         public MainWindow()
@@ -28,7 +25,7 @@ namespace RichtrisGUI
 
             this.KeyDown += new KeyEventHandler(OnCanvasKeyDown);
             dasSpielfeld = new Spielfeld(this);
-            Cannevas = MyGrid;
+            SpielfeldCanvas = MyGrid;
             dasSpielfeld.StarteSpiel();
         }
 
@@ -72,7 +69,6 @@ namespace RichtrisGUI
         }
         private void AddLine(double x1, double y1, double x2, double y2)
         {
-            // Add a Line Element
             Line = new Line();
             Line.Stroke = System.Windows.Media.Brushes.Tan;
             Line.X1 = x1;
@@ -82,7 +78,7 @@ namespace RichtrisGUI
             Line.HorizontalAlignment = HorizontalAlignment.Left;
             Line.VerticalAlignment = VerticalAlignment.Center;
             Line.StrokeThickness = 2;
-            Cannevas.Children.Add(Line);
+            SpielfeldCanvas.Children.Add(Line);
         }
 
         private Line Line { get; set; }
@@ -155,29 +151,13 @@ namespace RichtrisGUI
             dasSpielfeld.AblegenUndNeu();
         }
 
-        private void Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            //FrameworkElement fe = sender as FrameworkElement;
-            //((YourClass)fe.DataContext).DoYourCommand();
-            Line.X2 += 5;
-        }
-        private Canvas Cannevas;
+        private Canvas SpielfeldCanvas;
            private int kbreite = 15;
            private Spielfeld dasSpielfeld;
 	
-   // public SpielfeldCanvas(){}
     private void CodeToColor(){}
     public void paint (){}
 	
-    //public SpielfeldCanvas(Spielfeld einSpielfeld) {
-    //    dasSpielfeld = einSpielfeld;
-    //    dasSpielfeld.einSpielfeldCanvas = this;
-    //    }
-	
-    //public Dimension getPreferredSize()
-    //{
-    //    return new Dimension(241,451);	
-    //}
 
     public void CreateMap()
     {
@@ -189,22 +169,22 @@ namespace RichtrisGUI
     private Rectangle[,] spielfeldZeichnung;
     private void Paint(bool create)
     {
-        //   g.setColor(Color.red);
-        //   g.drawString("TETRIS 4 EVER!", 10, 100);
 
         if (create)
         {
             spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
             spielfeldBrush = new Brush[Spielfeld.xmax, Spielfeld.ymax];
 
-            for (int i = 0; i <= Spielfeld.xmax; i++)
-            {
-                AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
-            }
-            for (int j = 0; j <= Spielfeld.ymax; j++)
-            {
-                AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
-            }
+
+            /// Grid: rausmachen weil nicht schön?
+            //for (int i = 0; i <= Spielfeld.xmax; i++)
+            //{
+            //    AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
+            //}
+            //for (int j = 0; j <= Spielfeld.ymax; j++)
+            //{
+            //    AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
+            //}
 
         }
         for (int i = 0; i < Spielfeld.xmax; i++)
@@ -212,7 +192,7 @@ namespace RichtrisGUI
             for (int j = 0; j < Spielfeld.ymax; j++)
             {
                 Color Farbe = CodeToColor(dasSpielfeld.feld[i + 1, j + 1]);
-                //g.setColor(Farbe);
+
                 if (create)
                 {
                     var kaestchen = spielfeldZeichnung[i, j] = ZeichneKaestchen(i, j, Farbe);
@@ -222,45 +202,32 @@ namespace RichtrisGUI
                 {
                     var brush = (SolidColorBrush)spielfeldBrush[i, j];
                     brush.Color = Farbe;
-                    //  spielfeldZeichnung[i, j].Fill = spielfeldBrush.Color;
+
                 }
             }
         }
     }
     private Rectangle ZeichneKaestchen(int x, int y, Color farbe)
     {
-        //g.fillRect(x * kbreite + 1, y * kbreite + 1, kbreite - 1, kbreite - 1);
-        // Create a Rectangle
-
         Rectangle kästchen = new Rectangle();
 
-        kästchen.Height = kbreite - 1;
-        kästchen.Width = kbreite - 1;
+        // -1 wieder rein wenn Abstand gewünscht
+        kästchen.Height = kbreite /*- 1*/;
+        kästchen.Width = kbreite /*- 1*/;
 
+        SolidColorBrush fillBrush = new SolidColorBrush();
+        fillBrush.Color = farbe;
+        kästchen.Fill = fillBrush;
 
-
-        // Create a blue and a black Brush
-
-        SolidColorBrush blueBrush = new SolidColorBrush();
-        blueBrush.Color = farbe;
-
-        SolidColorBrush blackBrush = new SolidColorBrush();
-       // blackBrush.Color = Colors.Black;
-        blackBrush.Color = farbe;
-
-
-        // Set Rectangle's width and color
-
+        SolidColorBrush strokeBrush = new SolidColorBrush();
+        strokeBrush.Color = Colors.Black;
         kästchen.StrokeThickness = 1;
-        kästchen.Stroke = blackBrush;
+        kästchen.Stroke = strokeBrush;
 
-        // Fill rectangle with blue color
-        kästchen.Fill = blueBrush;
+        kästchen.RadiusX = 1;
+        kästchen.RadiusY = 1;
 
-
-
-        // Add Rectangle to the Grid.
-        Cannevas.Children.Add(kästchen);
+        SpielfeldCanvas.Children.Add(kästchen);
         Canvas.SetLeft(kästchen, x * kbreite + 1);
         Canvas.SetTop(kästchen, y * kbreite + 1);
 
@@ -306,7 +273,7 @@ namespace RichtrisGUI
         {
             if (einSpielstein == null)
                 return;
-            //Graphics g = getGraphics();
+
             var farbe = CodeToColor(einSpielstein.farbCode);
 
 
@@ -379,7 +346,7 @@ namespace RichtrisGUI
         {
                 foreach(var kästchen in steinMap[spielstein])
                 {
-                    Cannevas.Children.Remove(kästchen);
+                    SpielfeldCanvas.Children.Remove(kästchen);
                 }
                 steinMap.Remove(spielstein);
             
@@ -411,15 +378,15 @@ namespace RichtrisGUI
                 Canvas.SetLeft(inGameMessage, x);
                 Canvas.SetTop(inGameMessage, y);
                 Canvas.SetZIndex(inGameMessage, 10);
-                Cannevas.Children.Add(inGameMessage);
+                SpielfeldCanvas.Children.Add(inGameMessage);
                 
             }
 
         private void RemoveInGameMessage()
         {
-            if (Cannevas.Children.Contains(inGameMessage))
+            if (SpielfeldCanvas.Children.Contains(inGameMessage))
             {
-                Cannevas.Children.Remove(inGameMessage);
+                SpielfeldCanvas.Children.Remove(inGameMessage);
             }
 
             inGameMessage = null;
