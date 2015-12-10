@@ -108,6 +108,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image1.png" />
+    <Resource Include="Image2.png" />
+    <Resource Include="Image3.png" />
+    <Resource Include="Image4.png" />
     <Content Include="richtris.mp3" />
     <Content Include="Tetris Theme %28Dubstep Remix%29.MP3" />
   </ItemGroup>

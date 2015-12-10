@@ -265,6 +265,9 @@ namespace RichtrisGUI
             break;
             case 7: Farbe = Colors.Orange;
             break;
+            case 8: Farbe = Colors.White;
+            break;
+
             default: Farbe = Colors.Red;
             break;
             }
@@ -301,12 +304,14 @@ namespace RichtrisGUI
             }
             else if(!remove)
             {
-                stein = new Rectangle[4];
+                stein = new Rectangle[5];
 
                 stein[0] = ZeichneKaestchen(einSpielstein.x1 - 1, einSpielstein.y1 - 1, farbe);
                 stein[1] = ZeichneKaestchen(einSpielstein.x2 - 1, einSpielstein.y2 - 1, farbe);
                 stein[2] = ZeichneKaestchen(einSpielstein.x3 - 1, einSpielstein.y3 - 1, farbe);
                 stein[3] = ZeichneKaestchen(einSpielstein.x4 - 1, einSpielstein.y4 - 1, farbe);
+                stein[4] = ZeichneKaestchen(einSpielstein.x5 - 1, einSpielstein.y5 - 1, farbe);
+               
 
                 steinMap.Add(einSpielstein, stein);
 
@@ -322,6 +327,7 @@ namespace RichtrisGUI
                     {einSpielstein.x2 - 1, einSpielstein.y2 - 1},
                     {einSpielstein.x3 - 1, einSpielstein.y3 - 1},
                     {einSpielstein.x4 - 1, einSpielstein.y4 - 1},
+                    {einSpielstein.x5 - 1, einSpielstein.y5 - 1},
                 };
 
                 var i=0;
