@@ -70,11 +70,12 @@ namespace RichtrisGUI
 
         private void Button_Musik(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(@"../../richtris.mp3", UriKind.Relative);
+            Uri uri = new Uri(@"C:\Users\Dark88Dragon\Documents\Visual Studio 2013\Projects\RichtrisGUI\bin\debug\Best VGM 153 - Mega Man 2 - Dr. Wily Stage 1 _ 2.mp3", UriKind.Relative);
             var player = new MediaPlayer();
             player.Open(uri);
             player.Play();
         }
+
         private void AddLine(double x1, double y1, double x2, double y2)
         {
             Line = new Line();
@@ -85,7 +86,7 @@ namespace RichtrisGUI
             Line.Y2 = y2;
             Line.HorizontalAlignment = HorizontalAlignment.Left;
             Line.VerticalAlignment = VerticalAlignment.Center;
-            Line.StrokeThickness = 2;
+            Line.StrokeThickness = 55;
             SpielfeldCanvas.Children.Add(Line);
         }
 
@@ -160,7 +161,7 @@ namespace RichtrisGUI
         }
 
         private Canvas SpielfeldCanvas;
-           private int kbreite = 15;
+           private int kbreite = 22;
            private Spielfeld dasSpielfeld;
 	
     private void CodeToColor(){}
@@ -228,12 +229,12 @@ namespace RichtrisGUI
         kästchen.Fill = fillBrush;
 
         SolidColorBrush strokeBrush = new SolidColorBrush();
-        strokeBrush.Color = Colors.Black;
-        kästchen.StrokeThickness = 1;
+        strokeBrush.Color = Colors.DarkSlateGray;
+        kästchen.StrokeThickness = 1.11;
         kästchen.Stroke = strokeBrush;
 
-        kästchen.RadiusX = 1;
-        kästchen.RadiusY = 1;
+        kästchen.RadiusX = 3;
+        kästchen.RadiusY = 3;
 
         SpielfeldCanvas.Children.Add(kästchen);
         Canvas.SetLeft(kästchen, x * kbreite + 1);
@@ -248,7 +249,7 @@ namespace RichtrisGUI
             Farbcode = Farbcode - 8;
             }
             switch (Farbcode) {
-            case 0: Farbe = Colors.Black;
+                case 0: Farbe = Colors.LightSkyBlue;
             break;
             case 1: Farbe = Color.FromRgb(230, 10, 0);
             break;
@@ -256,7 +257,7 @@ namespace RichtrisGUI
             break;
             case 3: Farbe = Color.FromRgb(10, 170, 10);
             break;
-            case 4: Farbe = Color.FromRgb(20, 140, 180);
+            case 4: Farbe = Colors.DarkSlateBlue;
             break;
             case 5: Farbe = Color.FromRgb(255, 250, 210);
             break;
@@ -362,7 +363,7 @@ namespace RichtrisGUI
 
         public void GameOver()
         {
-            this.Dispatcher.Invoke((Action<double, double, string, Color>)Text, 30, 30, "Game Over", Colors.PaleVioletRed);
+            this.Dispatcher.Invoke((Action<double, double, string, Color>)Text, 50, 30, "Game Over", Colors.Black);
            // MessageBoxResult result = MessageBox.Show("Nochmal?", "GameOver.", MessageBoxButton.YesNo, MessageBoxImage.Question);
            // if (result == MessageBoxResult.No)
           //  {
@@ -379,9 +380,9 @@ namespace RichtrisGUI
                 }
                 inGameMessage = new TextBlock();
                 inGameMessage.Text = text;
-                inGameMessage.Background = new SolidColorBrush(Colors.PeachPuff);
+                inGameMessage.Background = new SolidColorBrush(Colors.MistyRose);
                 inGameMessage.Foreground = new SolidColorBrush(color);
-                inGameMessage.FontSize = 20;
+                inGameMessage.FontSize = 25;
                 inGameMessage.FontWeight = FontWeights.ExtraBold;
                 Canvas.SetLeft(inGameMessage, x);
                 Canvas.SetTop(inGameMessage, y);
