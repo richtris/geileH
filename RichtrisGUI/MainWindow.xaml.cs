@@ -70,7 +70,7 @@ namespace RichtrisGUI
 
         private void Button_Musik(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(@"C:\Users\Dark88Dragon\Documents\Visual Studio 2013\Projects\RichtrisGUI\bin\debug\Best VGM 153 - Mega Man 2 - Dr. Wily Stage 1 _ 2.mp3", UriKind.Relative);
+            Uri uri = new Uri(@"C:\Users\Dark88Dragon\Desktop\Tetris Theme (Dubstep Remix).mp3", UriKind.Relative);
             var player = new MediaPlayer();
             player.Open(uri);
             player.Play();
