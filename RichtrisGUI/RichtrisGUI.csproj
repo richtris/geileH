@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="richtris.mp3" />
+    <Content Include="Tetris Theme %28Dubstep Remix%29.MP3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
