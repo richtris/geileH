@@ -181,20 +181,27 @@ namespace RichtrisGUI
 
         if (create)
         {
+            if(spielfeldZeichnung != null)
+            {
+                for (int i = 0; i < Spielfeld.xmax; i++)
+                {
+                    for (int j = 0; j < Spielfeld.ymax; j++)
+                    {
+                        if(spielfeldZeichnung[i, j] != null)
+                        {
+                            SpielfeldCanvas.Children.Remove(spielfeldZeichnung[i, j]);
+                            spielfeldZeichnung[i, j] = null;
+                        }
+                        if (spielfeldBrush[i, j] != null)
+                        {
+                            spielfeldBrush[i, j] = null;
+                        }
+                    }
+                }
+            }
+
             spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
             spielfeldBrush = new Brush[Spielfeld.xmax, Spielfeld.ymax];
-
-
-            /// Grid: rausmachen weil nicht schön?
-            //for (int i = 0; i <= Spielfeld.xmax; i++)
-            //{
-            //    AddLine(i * kbreite, 0, i * kbreite, Spielfeld.ymax * kbreite);
-            //}
-            //for (int j = 0; j <= Spielfeld.ymax; j++)
-            //{
-            //    AddLine(0, j * kbreite, Spielfeld.xmax * kbreite, j * kbreite);
-            //}
-
         }
         for (int i = 0; i < Spielfeld.xmax; i++)
         {
@@ -370,11 +377,6 @@ namespace RichtrisGUI
         public void GameOver()
         {
             this.Dispatcher.Invoke((Action<double, double, string, Color>)Text, 50, 30, "Game Over", Colors.Black);
-           // MessageBoxResult result = MessageBox.Show("Nochmal?", "GameOver.", MessageBoxButton.YesNo, MessageBoxImage.Question);
-           // if (result == MessageBoxResult.No)
-          //  {
-     //           Application.Current.Shutdown();
-         //   }
         }
 
         private TextBlock inGameMessage;

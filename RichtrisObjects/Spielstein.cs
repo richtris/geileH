@@ -14,6 +14,9 @@ public class Spielstein {
 	public int y3;
 	public int x4;
 	public int y4;
+    public int x5;
+    public int y5;
+
 	
 	public Spielstein(int i){
 		
