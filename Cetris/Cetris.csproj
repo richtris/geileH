@@ -53,24 +53,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Register.xaml.cs" />
-    <Compile Include="Spielfeld.cs" />
-    <Compile Include="Spielstein.cs" />
-    <Compile Include="Statistik.cs" />
+    <Compile Include="Verwaltung\Register.xaml.cs" />
+    <Compile Include="Spiellogik\Spielfeld.cs" />
+    <Compile Include="Spiellogik\Spielstein.cs" />
+    <Compile Include="Statistik\Statistik.cs" />
     <Compile Include="Switcher.cs" />
-    <Page Include="Gameplay.xaml">
+    <Page Include="Verwaltung\Gameplay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LoadGame.xaml">
+    <Page Include="Verwaltung\LoadGame.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Login.xaml">
+    <Page Include="Verwaltung\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainMenu.xaml">
+    <Page Include="Verwaltung\MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -82,36 +82,36 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Gameplay.xaml.cs" />
-    <Compile Include="Highscore.cs" />
-    <Compile Include="IKonfig.cs" />
-    <Compile Include="IPaint.cs" />
-    <Compile Include="IStatistik.cs" />
-    <Compile Include="ISteuerung.cs" />
+    <Compile Include="Verwaltung\Gameplay.xaml.cs" />
+    <Compile Include="Statistik\Highscore.cs" />
+    <Compile Include="Verwaltung\IKonfig.cs" />
+    <Compile Include="Verwaltung\IPaint.cs" />
+    <Compile Include="Statistik\IStatistik.cs" />
+    <Compile Include="Spiellogik\ISteuerung.cs" />
     <Compile Include="ISwitchable.cs" />
-    <Compile Include="LoadGame.xaml.cs" />
-    <Compile Include="Login.xaml.cs" />
-    <Compile Include="MainMenu.xaml.cs" />
+    <Compile Include="Verwaltung\LoadGame.xaml.cs" />
+    <Compile Include="Verwaltung\Login.xaml.cs" />
+    <Compile Include="Verwaltung\MainMenu.xaml.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Option.xaml">
+    <Page Include="Verwaltung\Option.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PageSwitcher.xaml">
+    <Page Include="Verwaltung\PageSwitcher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Register.xaml">
+    <Page Include="Verwaltung\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Option.xaml.cs" />
-    <Compile Include="PageSwitcher.xaml.cs" />
+    <Compile Include="Verwaltung\Option.xaml.cs" />
+    <Compile Include="Verwaltung\PageSwitcher.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
