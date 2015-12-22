@@ -6,6 +6,7 @@ namespace RichtrisObjects{
 public class Spielstein {
 
 	public int farbCode;
+
 	public int x1;
 	public int y1;
 	public int x2;
