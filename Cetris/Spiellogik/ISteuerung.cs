@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cetris.Verwaltung;
 
 namespace Cetris
 {
 interface ISteuerung
 {
 // Neues Spiel starten
-void NeuesSpiel(SpielTyp spieltyp);
+void NeuesSpiel(Spieltyp spieltyp);
 //Bewegung des Spielsteins
 void Rechts();
 void Links();

@@ -17,7 +17,7 @@ void Update(int[,] spielfelddaten);
 // Steuerung deaktivieren, GameOver Text anzeigen
 void GameOver();
 //Zeigt nächsten Stein an
-void preview(Stein stein);
+void preview(Spielstein stein);
 //Zeigt Score an
 void ShowScore(int score);
 //Zeigt Lines an

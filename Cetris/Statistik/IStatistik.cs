@@ -6,26 +6,25 @@ using System.Threading.Tasks;
 
 namespace Cetris
 {
-interface IStatistik
-{
-// Gibt die aktuelle Highscoreliste zurück
-Highscore highscore {get; private set;}
-// Punktestand
-int Score {get; private set;}
-// Anzahl der gefallenen Steine (typId, anzahl)
-Dictionary<int,int> steinCount;
-// Spielstart
-DateTime Startzeit {get; private set;}
-// Der aktuelle User
-String User {get; private set}
-// Speichert die Daten eines Spiels in DB
-void Save();
-// Spielende
-DateTime Endzeit {get; private set; }
-// Blocks per Minute
-int BPM {get; private set; }
-
-// Spiellevel
-int Level {get; private set;}
-
+    interface IStatistik
+    {
+        // Gibt die aktuelle Highscoreliste zurück
+        Highscore highscore {get; set;}
+        // Punktestand
+        int Score {get; set;}
+        // Anzahl der gefallenen Steine (typId, anzahl)
+        Dictionary<int,int> steinCount {get; set;}
+        // Spielstart
+        DateTime Startzeit {get; set;}
+        // Der aktuelle User
+        String User { get; set; }
+        // Speichert die Daten eines Spiels in DB
+        void Save();
+        // Spielende
+        DateTime Endzeit {get; set; }
+        // Blocks per Minute
+        int BPM {get; set; }
+        // Spiellevel
+        int Level {get; set;}
+    }
 }
