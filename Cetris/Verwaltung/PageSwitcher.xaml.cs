@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Cetris
+namespace Cetris.Verwaltung
 {
     public partial class PageSwitcher : Window
     {

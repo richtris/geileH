@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cetris.Verwaltung;
 
-namespace Cetris
+namespace Cetris.Spiellogik
 {
 interface ISteuerung
 {

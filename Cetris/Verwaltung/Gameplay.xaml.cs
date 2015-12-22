@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace Cetris
+namespace Cetris.Verwaltung
 {
 	public partial class Gameplay : UserControl, ISwitchable
 	{

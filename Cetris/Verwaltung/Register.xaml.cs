@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cetris
+namespace Cetris.Verwaltung
 {
 	/// <summary>
 	/// Interaction logic for Register.xaml

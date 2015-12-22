@@ -98,7 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Verwaltung\Gameplay.xaml.cs">
-      <DependentUpon>Option.xaml</DependentUpon>
+      <DependentUpon>Gameplay.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Statistik\Highscore.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Spiellogik\ISteuerung.cs" />
     <Compile Include="Verwaltung\ISwitchable.cs" />
     <Compile Include="Verwaltung\LoadGame.xaml.cs">
-      <DependentUpon>Option.xaml</DependentUpon>
+      <DependentUpon>LoadGame.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Verwaltung\Login.xaml.cs">

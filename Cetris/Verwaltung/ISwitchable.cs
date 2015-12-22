@@ -1,5 +1,5 @@
 ﻿
-namespace Cetris
+namespace Cetris.Verwaltung
 {
   	public interface ISwitchable
   	{

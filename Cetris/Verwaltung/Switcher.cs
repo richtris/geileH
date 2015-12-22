@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Cetris
+namespace Cetris.Verwaltung
 {
   	public static class Switcher
   	{
