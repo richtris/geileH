@@ -18,13 +18,18 @@ namespace Cetris.Statistik
         DateTime Startzeit {get; set;}
         // Der aktuelle User
         String User { get; set; }
-        // Speichert die Daten eines Spiels in DB
-        void Save();
         // Spielende
         DateTime Endzeit {get; set; }
         // Blocks per Minute
         int BPM {get; set; }
         // Spiellevel
         int Level {get; set;}
+        // Anzahl Lines
+        int Lines { get; set; }
+        // Speichert die Daten eines Spiels in DB
+        void Save();
+        // Setzt die Spieldaten zurück
+        void Reset();
+    
     }
 }

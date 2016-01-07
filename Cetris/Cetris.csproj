@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Statistik\StatistikManager.cs" />
     <Compile Include="Verwaltung\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
       <SubType>Code</SubType>

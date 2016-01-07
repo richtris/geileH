@@ -2,11 +2,11 @@
 {
     public enum Richtung
     {
-        Rechts, Links, Oben, Unten
+        Rechts, Links, Unten
     }
     class Spielstein
     {
-        public int FarbCode { get; private set; }
+        public int FarbCode { get; set; }
 
         // Dieses Kästchen ist als Drehpunkt festgelegt
         public int x1;
@@ -97,9 +97,6 @@
                 case Richtung.Unten:
                     y = 1;
                     break;
-                case Richtung.Oben:
-                    y = -1;
-                    break;
             }
 
             // X-Verschiebung der Kästchen
@@ -144,6 +141,8 @@
             y4 = y;
         }
 
+        // x und y drehen um den Drehpunkt 
+
         private int XkoordDrehen(int y)
         {
             return x1 - y1 + y;
@@ -163,18 +162,18 @@
         public Spielstein Kopie()
         {
 
-            Spielstein neu = new Spielstein(this.FarbCode);
+            Spielstein neuerSpielstein = new Spielstein(this.FarbCode);
 
-            neu.x1 = this.x1;
-            neu.y1 = this.y1;
-            neu.x2 = this.x2;
-            neu.y2 = this.y2;
-            neu.x3 = this.x3;
-            neu.y3 = this.y3;
-            neu.x4 = this.x4;
-            neu.y4 = this.y4;
+            neuerSpielstein.x1 = this.x1;
+            neuerSpielstein.y1 = this.y1;
+            neuerSpielstein.x2 = this.x2;
+            neuerSpielstein.y2 = this.y2;
+            neuerSpielstein.x3 = this.x3;
+            neuerSpielstein.y3 = this.y3;
+            neuerSpielstein.x4 = this.x4;
+            neuerSpielstein.y4 = this.y4;
 
-            return neu;
+            return neuerSpielstein;
 
         }
     }

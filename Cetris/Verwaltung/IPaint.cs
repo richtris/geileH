@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cetris.Spiellogik;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,14 @@ void Update(int[,] spielfelddaten);
 void GameOver();
 //Zeigt nächsten Stein an
 void preview(Spielstein stein);
-//Zeigt Score an
-void ShowScore(int score);
-//Zeigt Lines an
-void ShowLines(int lines);
+
+
+//Todo: remove, GUI zieht Daten selbst aus Istatistik (?)
+////Zeigt Score an
+//void ShowScore(int score);
+////Zeigt Lines an
+//void ShowLines(int lines);
+
+
 }
 }

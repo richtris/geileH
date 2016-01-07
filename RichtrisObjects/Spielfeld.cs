@@ -101,7 +101,7 @@ namespace RichtrisObjects
                 }
                 else
                 {
-                    Setzen(aktSpielstein);
+                    Ablegen(aktSpielstein);
                 }
             }
             aktSpielstein = null;
@@ -120,9 +120,8 @@ namespace RichtrisObjects
             feld[stein.x2, stein.y2] = 0;
             feld[stein.x3, stein.y3] = 0;
             feld[stein.x4, stein.y4] = 0;
-
-
         }
+
         private void Setzen(Spielstein stein)
         {
 
@@ -154,32 +153,26 @@ namespace RichtrisObjects
 
             punkte += 10;
             Console.WriteLine(punkte);
-            for (int i = 0; i <= xmax; ++i)
+    
+            var yKoords = new int[4];
+            yKoords[0] = einSpielstein.y1;
+            yKoords[1] = einSpielstein.y2;
+            yKoords[2] = einSpielstein.y3;
+            yKoords[3] = einSpielstein.y4;
+
+            Array.Sort(yKoords);
+
+            foreach (var y in yKoords)
             {
+                for (int i = 1; i <= xmax; ++i)
+                {
 
-                if (feld[i, einSpielstein.y1] == 0) break;
-                if (i == xmax) ZeileLöschen(einSpielstein.y1);
-            }
-
-            for (int i = 0; i <= xmax; ++i)
-            {
-
-                if (feld[i, einSpielstein.y2] == 0) break;
-                if (i == xmax) ZeileLöschen(einSpielstein.y2);
-            }
-
-            for (int i = 0; i <= xmax; ++i)
-            {
-
-                if (feld[i, einSpielstein.y3] == 0) break;
-                if (i == xmax) ZeileLöschen(einSpielstein.y3);
-            }
-
-            for (int i = 0; i <= xmax; ++i)
-            {
-
-                if (feld[i, einSpielstein.y4] == 0) break;
-                if (i == xmax) ZeileLöschen(einSpielstein.y4);
+                    if (feld[i, y] == 0)
+                    {
+                        break;
+                    }
+                    if (i == xmax) ZeileLöschen(y);
+                }
             }
 
             stats.Punkte += 100;
@@ -193,12 +186,11 @@ namespace RichtrisObjects
             for (int j = y; j >= 1; j--)
             {
 
-                for (int i = 0; i <= xmax; ++i)
+                for (int i = 1; i <= xmax; ++i)
                 {
                     if (j > 1)
                     {
-                        int color1 = feld[i, j];
-                        int color2 = feld[i, j] = feld[i, j - 1];
+                        feld[i, j] = feld[i, j - 1];
 
                     }
                     else if (j == 1) feld[i, j] = 0;
