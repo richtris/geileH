@@ -10,7 +10,7 @@ namespace Cetris.Verwaltung
 interface IPaint
 {
 // Erzeugt eine neue Spielfeldansicht
-void Create();
+void Create(int[,] spielfelddaten);
 // Setzt die Ansicht zurück auf den Anfangszustand (neues Spiel)
 void Reset();
 // Änderungen am Spielfeld sichtbar machen

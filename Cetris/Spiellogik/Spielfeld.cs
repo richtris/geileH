@@ -61,10 +61,10 @@ namespace Cetris.Spiellogik
             //Todo: Spieltyp wird noch nicht berücksichtigt ...
 
             InitSpielfeld();
-            gui.Create();
-            gui.Update(this.spielfeld);
+            gui.Create(this.spielfeld);
 
             NeuerSpielstein();
+            Setzen(aktSpielstein);
             gui.Update(this.spielfeld);
 
         }

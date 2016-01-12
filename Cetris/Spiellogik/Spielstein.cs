@@ -4,7 +4,7 @@
     {
         Rechts, Links, Unten
     }
-    class Spielstein
+    public class Spielstein
     {
         public int FarbCode { get; set; }
 
