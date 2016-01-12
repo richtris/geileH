@@ -71,11 +71,13 @@ namespace Cetris.Verwaltung
                         }
                     }
                 }
-
+                //Array mit Quadraten die das Spielfeld zu einem Ganzen zusammensetzt 
                 spielfeldZeichnung = new Rectangle[Spielfeld.xmax, Spielfeld.ymax];
                 spielfeldBrush = new Brush[Spielfeld.xmax, Spielfeld.ymax];
             }
 
+
+            
             for (int i = 0; i < Spielfeld.xmax; i++)
             {
                 for (int j = 0; j < Spielfeld.ymax; j++)
