@@ -134,7 +134,29 @@ namespace Cetris.Spiellogik
 
         public void Drehen()
         {
-            throw new NotImplementedException();
+            if (Drehbar(aktSpielstein))
+            {
+                Drehen(aktSpielstein);
+            }
+
+            gui.Update(this.spielfeld);
+        }
+
+        private bool Drehbar(Spielstein einSpielstein)
+        {
+            if (einSpielstein == null)
+                return false;
+            Spielstein verschobenerSpielstein = einSpielstein.Kopie();
+            verschobenerSpielstein.Drehen();
+            return Setzbar(verschobenerSpielstein);
+
+        }
+
+        private void Drehen(Spielstein stein)
+        {
+            Loeschen(stein);
+            stein.Drehen();
+            Setzen(stein);
         }
 
 

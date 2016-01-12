@@ -120,6 +120,9 @@
         /// </summary>
         public void Drehen()
         {
+            if (FarbCode == 3)
+                return;
+
             int x, y;
 
             // Kästchen 2

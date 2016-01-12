@@ -169,6 +169,22 @@ namespace Cetris.Verwaltung
                 case Key.Down:
                     spielfeldlogik.Runter();
                     break;
+
+                case Key.Left:
+                    spielfeldlogik.Links();
+                    break;
+
+                case Key.Right:
+                    spielfeldlogik.Rechts();
+                    break;
+
+            /*    case Key.Pause:
+                    spielfeldlogik.Pause();
+                    break;*/
+
+                case Key.Up:
+                    spielfeldlogik.Drehen();
+                    break;
             }
         }
 
