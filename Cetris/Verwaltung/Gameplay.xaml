@@ -5,10 +5,48 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	mc:Ignorable="d"
 	x:Class="Cetris.Verwaltung.Gameplay"
-	d:DesignWidth="640" d:DesignHeight="480" Width="800" Height="600">
+	 Height="550" Width="525" Foreground="{x:Null}" OpacityMask="#FF0751EE" BorderBrush="#FF6679F0" BorderThickness="2">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FFFD0404" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
 
-	<Grid x:Name="gameplayLayoutRoot" Background="White">
-		<TextBlock Height="40" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="200" Text="Gameplay" TextWrapping="Wrap" FontSize="21.333"/>
-		<Button HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Height="25" Click="Button_Click"/>
-	</Grid>
+    <Canvas Name="MyGrid" HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="300" KeyDown="OnCanvasKeyDown" KeyboardNavigation.DirectionalNavigation="None" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5">
+        <Canvas.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform X="3" Y="3"/>
+            </TransformGroup>
+        </Canvas.RenderTransform>
+        <Button Content="New Game"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Top"
+		Width="75"
+		Click="Button_NewGame" Canvas.Left="341" Canvas.Top="155" Focusable="False"/>
+
+        <TextBlock Canvas.Left="282" TextWrapping="Wrap" Text="CETRIS" Canvas.Top="27" Foreground="#FFFFDC00" Height="43" Width="191" FontSize="36" FontFamily="Cooper Black" RenderTransformOrigin="-1.265,1.51"/>
+        <Border BorderBrush="Black" BorderThickness="6" Height="457" Canvas.Left="249" Width="247" CornerRadius="5" Canvas.Top="-10">
+            <Border.Effect>
+                <DropShadowEffect Color="#FF3A5BF0"/>
+            </Border.Effect>
+        </Border>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="72" Canvas.Top="452" Canvas.Left="-2"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="73" Canvas.Left="70" Canvas.Top="452"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="72" Canvas.Left="143" Canvas.Top="452"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="73" Canvas.Left="359" Canvas.Top="452"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="72" Canvas.Left="287" Canvas.Top="452"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="72" Canvas.Left="215" Canvas.Top="452"/>
+        <Image Height="58" Source="Image2.png" Stretch="Fill" Width="74" Canvas.Left="432" Canvas.Top="452" RenderTransformOrigin="2.086,0.655"/>
+        <Border BorderBrush="Black" BorderThickness="10,0,8,8" Height="457" Canvas.Left="-12" Width="238" CornerRadius="5" Canvas.Top="-10">
+            <Border.Effect>
+                <DropShadowEffect Color="#FF3A5BF0"/>
+            </Border.Effect>
+            <Viewbox Margin="-234,5,234,-5"/>
+        </Border>
+        <Image Height="86" Source="Image4.png" Stretch="Fill" Width="172" Canvas.Left="287" Canvas.Top="346"/>
+    </Canvas>
 </UserControl>

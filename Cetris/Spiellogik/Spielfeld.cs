@@ -76,23 +76,61 @@ namespace Cetris.Spiellogik
 
         public void Rechts()
         {
-            throw new NotImplementedException();
+            if (Verschiebbar(aktSpielstein, Richtung.Rechts))
+            {
+                Verschieben(aktSpielstein, Richtung.Rechts);
+            }
+
+            gui.Update(this.spielfeld);
         }
 
         public void Links()
         {
-            throw new NotImplementedException();
+            if (Verschiebbar(aktSpielstein, Richtung.Links))
+            {
+                Verschieben(aktSpielstein, Richtung.Links);
+            }
+
+            gui.Update(this.spielfeld);
         }
+        
 
         public void Runter()
         {
-            throw new NotImplementedException();
-        }
+            if (Verschiebbar(aktSpielstein, Richtung.Unten))
+            {
+                Verschieben(aktSpielstein, Richtung.Unten);
+                gui.Update(this.spielfeld);
+            }
+            else
+            {
+                Ablegen(aktSpielstein);
+              
+                    NeuerSpielstein();
+                    gui.Update(this.spielfeld);
+                }
+            }
+        
 
         public void HardDrop()
         {
-            throw new NotImplementedException();
+              bool dropped = false;
+            do
+            {
+                if (Verschiebbar(aktSpielstein,Richtung.Unten))
+                {
+                    Verschieben(aktSpielstein,Richtung.Unten);
+                }
+                else
+                {
+                    Ablegen(aktSpielstein);
+                    dropped = true;
+                    NeuerSpielstein();
+                    gui.Update(this.spielfeld);
+                }
+            } while (!dropped);
         }
+        
 
         public void Drehen()
         {

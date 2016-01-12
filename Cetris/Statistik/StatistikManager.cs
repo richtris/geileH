@@ -10,14 +10,14 @@ namespace Cetris.Statistik
     {
         public StatistikManager()
         {
-            Highscore = new Highscore();
+            highscore = new Highscore();
             Reset();
         }
 
-        public Highscore Highscore
+        public Highscore highscore
         {
             get;
-            private set;
+            set;
         }
 
         public int Score
@@ -41,7 +41,7 @@ namespace Cetris.Statistik
         public string User
         {
             get;
-            private set;
+            set;
         }
 
         public DateTime Endzeit
@@ -71,7 +71,7 @@ namespace Cetris.Statistik
 
         public void Save()
         {
-            Highscore.Add(User, Score);
+            highscore.Add(User, Score);
             Console.WriteLine("Daten werden in Datenbank gespeichert ...");
         }
 

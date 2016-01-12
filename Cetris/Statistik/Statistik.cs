@@ -109,5 +109,23 @@ namespace Cetris.Statistik
                 throw new NotImplementedException();
             }
         }
+
+
+        public int Lines
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
