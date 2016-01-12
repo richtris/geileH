@@ -189,9 +189,38 @@ namespace Cetris.Verwaltung
 
         public void GameOver()
         {
-            throw new NotImplementedException();
+            this.Dispatcher.Invoke((Action<double, double, string, Color>)Text, 50, 30, "Game Over", Colors.Black);
+        }
+        private TextBlock inGameMessage;
+        private void Text(double x, double y, string text, Color color)
+        {
+            if (inGameMessage != null)
+            {
+                RemoveInGameMessage();
+            }
+            inGameMessage = new TextBlock();
+            inGameMessage.Text = text;
+            inGameMessage.Background = new SolidColorBrush(Colors.DarkViolet);
+            inGameMessage.Foreground = new SolidColorBrush(color);
+            inGameMessage.FontSize = 25;
+            inGameMessage.FontWeight = FontWeights.ExtraBold;
+            inGameMessage.FontFamily = new FontFamily("Cooper Black");
+            Canvas.SetLeft(inGameMessage, x);
+            Canvas.SetTop(inGameMessage, y);
+            Canvas.SetZIndex(inGameMessage, 10);
+            spielfeldZeichenfläche.Children.Add(inGameMessage);
+
         }
 
+        private void RemoveInGameMessage()
+        {
+            if (spielfeldZeichenfläche.Children.Contains(inGameMessage))
+            {
+                spielfeldZeichenfläche.Children.Remove(inGameMessage);
+            }
+
+            inGameMessage = null;
+        }
         public void preview(Spielstein stein)
         {
             throw new NotImplementedException();
